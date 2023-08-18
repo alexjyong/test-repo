@@ -1,2 +1,2 @@
 # test-repo
-playground for testing things in codespace
+Run python3 test.py to fire up a webserver to view data from the test database

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data from Python</title>
+    <!-- Add Bootstrap CSS for table styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Table structure -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" scope="col">Jobs Toned</th>
+            <th style="text-align: center" scope="col">Jobs Ran</th>
+            <th style="text-align: center" scope="col">Percentage Toned</th>
+            <th style="text-align: center" scope="col">Tone Hours</th>
+            <th style="text-align: center" scope="col">Most Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="jobsToned" style="text-align: center" scope="row">##</td>
+            <td id="jobsRan" style="text-align: center">!!</td>
+            <td id="percentageToned" style="text-align: center">@@.@%</td>
+            <td id="toneHours" style="text-align: center">&&.& hours</td>
+            <td id="mostTime" style="text-align: center">^^ minutes</td>
+        </tr>        
+    </tbody>
+</table>
+
+<!-- Canvas for the pie chart -->
+<canvas id="myPieChart" width="400" height="400"></canvas>
+
+<script>
+    // Fetch the JSON data
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            // Update the placeholders in the HTML table
+            // Update the placeholders in the HTML table
+            document.getElementById('jobsToned').textContent = data.total_time;
+            document.getElementById('jobsRan').textContent = data.jobs_ran;
+            document.getElementById('percentageToned').textContent = data.percentage_toned + "%";
+            document.getElementById('toneHours').textContent = data.tone_hours + " hours";
+            document.getElementById('mostTime').textContent = data.most_time + " minutes";
+
+            // Update the Chart.js chart
+            const labels = ["Total Time", "Other Value"]; // Modify as needed
+            const chartData = [data.total_time, 100 - data.total_time]; // Modify as needed
+            const ctx = document.getElementById("myPieChart");
+            const myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: chartData,
+                        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                    }],
+                },
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching the JSON data:', error);
+        });
+</script>
+
+</body>
+</html>

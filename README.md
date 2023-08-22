@@ -17,7 +17,7 @@ Here's the revised step with the volume mapping:
    ```bash
    docker run --name mongodb-container -d -p 27017:27017 -v /path/to/gitcheckout/mongoData:/data/db mongo:latest
    ```
-   Here, `/path/to/gitcheckout/mongoData` is a directory on your host machine where you want to store the MongoDB data. This directory will be mapped to `/data/db` inside the container, which is the default data directory for MongoDB.
+   Here, `/path/to/gitcheckout/mongoData` is a directory on your host machine where you want to store the MongoDB data. For example, if it's a folder on your (macos) Desktop, it would be `/Users/<YOURUSERNAME>/Desktop/YourFolder`. This directory will be mapped to `/data/db` inside the container, which is the default data directory for MongoDB.
 
 3. **Access the MongoDB Shell**:
    ```bash

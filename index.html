@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPUB.js Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3/dist/epub.min.js"></script>
+    <style>
+        /* Basic styling for the viewer */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #viewer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewer"></div>
+    <script>
+        // Initialize the EPUB book
+        var book = ePub("myEpub.epub");
+        var rendition = book.renderTo("viewer", {
+            width: "100%",
+            height: "100%"
+        });
+        var displayed = rendition.display();
+    </script>
+</body>
+</html>
